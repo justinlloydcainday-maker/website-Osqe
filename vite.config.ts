@@ -1,15 +1,22 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig} from 'vite';
+import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
+  // Support GitHub Actions deployment where GITHUB_REPOSITORY is defined (e.g. "user/repo")
+  // Or manual base specification via BASE_PATH env var
+  const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : null;
+  const base = process.env.BASE_PATH || (repoName ? `/${repoName}/` : './');
+
+  const currentDir = typeof import.meta.dirname !== 'undefined' ? import.meta.dirname : __dirname;
+
   return {
-    base: './',
+    base,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(currentDir, '.'),
       },
     },
     server: {

@@ -9,7 +9,18 @@
     <meta property="og:description" content="Freshly made crispy banana churros drizzled with sweet condensed milk, Bear Brand milk powder, and Milo. 3 for ₱50 only!" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/png" href="./logo.png" />
+
+    <!-- Trailing-slash normalization for GitHub Pages subpaths -->
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        if (path.length > 1 && !path.endsWith('/') && !path.split('/').pop().includes('.')) {
+          window.location.replace(window.location.protocol + '//' + window.location.host + path + '/' + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,6 +28,31 @@
   <body class="bg-[#fefdf9] text-stone-800 antialiased selection:bg-amber-200 selection:text-amber-900">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Diagnostics fallback for unbuilt GitHub Pages branches -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var root = document.getElementById('root');
+          if (root && root.childNodes.length === 0) {
+            var host = window.location.hostname;
+            if (host.includes('github.io')) {
+              root.innerHTML = '<div style="font-family:system-ui,-apple-system,sans-serif;max-width:580px;margin:60px auto;padding:24px;border:1px solid #fecaca;background:#fff5f5;border-radius:16px;color:#991b1b;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1);">' +
+                '<h2 style="margin-top:0;font-size:20px;font-weight:800;color:#7f1d1d;display:flex;align-items:center;gap:8px;">⚠️ GitHub Pages Setup Required</h2>' +
+                '<p style="font-size:14px;line-height:1.6;color:#374151;margin:12px 0;">The website loaded <code>index.html</code> directly from the repository branch root instead of running the built React application from <code>dist/</code>.</p>' +
+                '<div style="background:#ffffff;padding:16px;border-radius:12px;border:1px solid #fee2e2;font-size:13px;line-height:1.7;color:#1f2937;margin:16px 0;">' +
+                '<strong style="color:#153e26;">How to display the live website in 3 steps:</strong><br>' +
+                '1. Open your GitHub Repository and click <strong>Settings</strong> (top tab).<br>' +
+                '2. On the left sidebar, click <strong>Pages</strong>.<br>' +
+                '3. Under <strong>Build and deployment → Source</strong>, select <strong>"GitHub Actions"</strong> (instead of <em>Deploy from a branch</em>).<br>' +
+                '4. GitHub Actions will run <code>.github/workflows/deploy.yml</code> and build the <code>dist/</code> bundle automatically in ~1 minute!' +
+                '</div>' +
+                '<a href="javascript:location.reload()" style="display:inline-block;background:#153e26;color:#facc15;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;">Refresh Once Deployed</a>' +
+                '</div>';
+            }
+          }
+        }, 2000);
+      });
+    </script>
   </body>
 </html>
-

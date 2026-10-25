@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting to OSQE Banana Churros...</title>
+    <script>
+      // Single Page Application redirect for GitHub Pages
+      // Stores current path and redirects to base URL
+      (function() {
+        var segmentCount = 1; // 1 segment for https://<username>.github.io/<repo>/
+        var location = window.location;
+        var pathname = location.pathname;
+        var parts = pathname.split('/');
+        
+        // If repo subpath exists, redirect to repo root with path in query or hash
+        var repoRoot = parts.slice(0, 2).join('/') + '/';
+        var redirectUrl = repoRoot + '#' + pathname.slice(repoRoot.length) + location.search + location.hash;
+        
+        window.location.replace(redirectUrl);
+      })();
+    </script>
+  </head>
+  <body style="font-family: system-ui, -apple-system, sans-serif; background: #faf8f2; color: #1c1917; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center;">
+    <div>
+      <h2 style="color: #153e26; margin-bottom: 8px;">Loading OSQE Banana Churros...</h2>
+      <p style="color: #57534e; font-size: 14px;">Redirecting you to the main page. If you are not redirected automatically, <a href="./" style="color: #153e26; font-weight: bold;">click here</a>.</p>
+    </div>
+  </body>
+</html>
