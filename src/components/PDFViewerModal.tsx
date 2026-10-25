@@ -53,17 +53,17 @@ export default function PDFViewerModal({ isOpen, onClose, initialPage = 1 }: PDF
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between px-5 py-3.5 bg-stone-950 border-b border-stone-800 text-white shrink-0">
+        <div className="flex items-center justify-between px-5 py-3.5 bg-[#0f2d1a] border-b border-stone-800 text-white shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#facc15]/20 text-[#facc15] flex items-center justify-center">
               <FileText className="w-4 h-4" />
             </div>
             <div>
               <h3 className="font-bold text-sm sm:text-base font-heading">
                 OSQE Banana Churros — Business Plan & Dossier
               </h3>
-              <p className="text-[11px] text-stone-400">
-                23-Page Course Requirement · Elective 211 · ESSU Borongan
+              <p className="text-[11px] text-stone-300">
+                23-Page Academic Submission · Elective 211 · ESSU Borongan
               </p>
             </div>
           </div>
@@ -72,7 +72,7 @@ export default function PDFViewerModal({ isOpen, onClose, initialPage = 1 }: PDF
             <a
               href={rawPdfUrl}
               download="OSQE_Banana_Churros_Business_Plan.pdf"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 text-xs font-bold transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#facc15] hover:bg-amber-300 text-[#153e26] text-xs font-bold transition-colors"
             >
               <Download className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Download PDF</span>

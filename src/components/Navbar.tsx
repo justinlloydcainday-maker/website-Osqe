@@ -12,68 +12,69 @@ export default function Navbar({ onOpenOrderModal, onOpenPdfModal }: NavbarProps
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-8">
-          {/* Zone 1: Single element brand wordmark */}
-          <a href="#home" className="flex items-center gap-2.5 text-stone-900 shrink-0">
+    <header className="sticky top-0 z-40 bg-[#faf8f2]/90 backdrop-blur-md border-b border-stone-200/80">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 gap-6">
+          
+          {/* Zone 1: Clean Minimalist Brand Wordmark */}
+          <a href="#home" className="flex items-center gap-3 shrink-0 group">
             <img
               src={getAssetUrl('/logo.png')}
               alt="OSQE Banana Churros"
-              className="w-10 h-10 object-contain rounded-full bg-amber-50 border border-amber-300 p-0.5"
+              className="w-9 h-9 object-contain rounded-full bg-white border border-[#153e26]/20 p-0.5 shadow-2xs"
             />
             <div className="leading-tight">
-              <span className="text-base sm:text-lg font-bold font-heading tracking-tight block text-stone-900">
+              <span className="text-base font-bold font-heading tracking-tight text-[#153e26] block group-hover:text-amber-800 transition-colors">
                 {BUSINESS_INFO.name}
               </span>
-              <span className="text-[11px] text-amber-800 font-medium block">
+              <span className="text-[11px] text-stone-500 font-medium block">
                 ESSU Borongan · Elective 211
               </span>
             </div>
           </a>
 
-          {/* Zone 2: Clean single-line nav links */}
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-stone-600">
-            <a href="#product" className="hover:text-amber-700 transition-colors whitespace-nowrap shrink-0">
-              Product & Recipe
+          {/* Zone 2: Minimalist Navigation Links */}
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+            <a href="#product" className="hover:text-[#153e26] transition-colors whitespace-nowrap">
+              Menu & Recipe
             </a>
-            <a href="#gallery" className="hover:text-amber-700 transition-colors whitespace-nowrap shrink-0">
+            <a href="#gallery" className="hover:text-[#153e26] transition-colors whitespace-nowrap">
               Gallery
             </a>
-            <a href="#financials" className="hover:text-amber-700 transition-colors whitespace-nowrap shrink-0">
-              Financials
+            <a href="#financials" className="hover:text-[#153e26] transition-colors whitespace-nowrap">
+              Economics
             </a>
-            <a href="#team" className="hover:text-amber-700 transition-colors whitespace-nowrap shrink-0">
-              Team & Structure
+            <a href="#team" className="hover:text-[#153e26] transition-colors whitespace-nowrap">
+              Team
             </a>
             <button
               onClick={onOpenPdfModal}
-              className="text-stone-600 hover:text-amber-700 transition-colors inline-flex items-center gap-1.5 whitespace-nowrap shrink-0 cursor-pointer"
+              className="text-stone-600 hover:text-[#153e26] transition-colors inline-flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
             >
-              <FileText className="w-3.5 h-3.5 text-amber-600" />
+              <FileText className="w-3.5 h-3.5 text-[#153e26]" />
               <span>Business Plan</span>
             </button>
           </nav>
 
-          {/* Zone 3: 1 primary action */}
-          <div className="hidden md:flex items-center shrink-0">
+          {/* Zone 3: Primary Action Button in Poster Colors */}
+          <div className="hidden md:flex items-center gap-3 shrink-0">
             <button
               onClick={onOpenOrderModal}
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-stone-900 bg-amber-400 hover:bg-amber-300 rounded-lg shadow-xs transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-[#153e26] hover:bg-[#0f2d1a] rounded-lg shadow-2xs transition-colors whitespace-nowrap cursor-pointer"
             >
-              <ShoppingBag className="w-4 h-4" />
-              <span>Order Now · 3 for ₱50</span>
+              <ShoppingBag className="w-3.5 h-3.5 text-[#facc15]" />
+              <span>Order · 3 for ₱50</span>
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-stone-700 hover:text-stone-900 rounded-lg hover:bg-stone-100 transition-colors"
-              aria-label="Toggle Navigation Menu"
+              className="p-2 text-stone-700 hover:text-[#153e26] rounded-lg transition-colors"
+              aria-label="Toggle Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -81,33 +82,33 @@ export default function Navbar({ onOpenOrderModal, onOpenPdfModal }: NavbarProps
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-stone-200 bg-white px-4 pt-3 pb-5 space-y-3">
+        <div className="md:hidden border-t border-stone-200 bg-[#faf8f2] px-4 pt-3 pb-5 space-y-3">
           <nav className="flex flex-col space-y-2 text-sm font-medium text-stone-700">
             <a
               href="#product"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-1.5 hover:text-amber-700"
+              className="py-1.5 hover:text-[#153e26]"
             >
-              Product & Recipe
+              Menu & Recipe
             </a>
             <a
               href="#gallery"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-1.5 hover:text-amber-700"
+              className="py-1.5 hover:text-[#153e26]"
             >
               Gallery
             </a>
             <a
               href="#financials"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-1.5 hover:text-amber-700"
+              className="py-1.5 hover:text-[#153e26]"
             >
-              Financials & Economics
+              Economics & Costing
             </a>
             <a
               href="#team"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-1.5 hover:text-amber-700"
+              className="py-1.5 hover:text-[#153e26]"
             >
               Team & Structure
             </a>
@@ -116,10 +117,10 @@ export default function Navbar({ onOpenOrderModal, onOpenPdfModal }: NavbarProps
                 setMobileMenuOpen(false);
                 onOpenPdfModal();
               }}
-              className="py-1.5 text-left text-amber-700 font-semibold inline-flex items-center gap-1.5 cursor-pointer"
+              className="py-1.5 text-left text-[#153e26] font-semibold inline-flex items-center gap-1.5 cursor-pointer"
             >
               <FileText className="w-4 h-4" />
-              <span>View 23-Page Business Plan PDF</span>
+              <span>View 23-Page Business Plan</span>
             </button>
           </nav>
 
@@ -128,9 +129,9 @@ export default function Navbar({ onOpenOrderModal, onOpenPdfModal }: NavbarProps
               setMobileMenuOpen(false);
               onOpenOrderModal();
             }}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-bold text-stone-900 bg-amber-400 hover:bg-amber-300 rounded-lg shadow-xs transition-colors cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-[#153e26] hover:bg-[#0f2d1a] rounded-lg shadow-2xs transition-colors cursor-pointer"
           >
-            <ShoppingBag className="w-4 h-4" />
+            <ShoppingBag className="w-4 h-4 text-[#facc15]" />
             <span>Order Now · 3 for ₱50</span>
           </button>
         </div>

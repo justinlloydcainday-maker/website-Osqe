@@ -4,12 +4,24 @@
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  --color-forest: #153e26;
+  --color-forest-dark: #0d2818;
+  --color-forest-light: #1f5434;
+  --color-banana: #eab308;
+  --color-banana-light: #fef08a;
+  --color-crimson: #b91c1c;
+  --color-cream: #faf7ee;
+  --color-cream-soft: #f4efe2;
 }
 
 body {
   font-family: var(--font-sans);
+  background-color: #faf8f2;
+  color: #1c1917;
 }
 
 h1, h2, h3, h4, .font-heading {
   font-family: var(--font-heading);
 }
+

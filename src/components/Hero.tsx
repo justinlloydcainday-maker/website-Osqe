@@ -1,5 +1,5 @@
 import { ArrowRight, ShoppingBag, FileText, CheckCircle2, Sparkles, MapPin } from 'lucide-react';
-import { BUSINESS_INFO, ACTUAL_BATCH_FINANCIALS } from '../data/businessData';
+import { BUSINESS_INFO } from '../data/businessData';
 import { getAssetUrl } from '../utils/assetHelper';
 
 interface HeroProps {
@@ -9,185 +9,175 @@ interface HeroProps {
 }
 
 export default function Hero({ onOpenOrderModal, onOpenPdfModal, onOpenImageModal }: HeroProps) {
-  const heroImage = getAssetUrl('/assets/aistudio/d24bcb86-b988-41f6-94b3-8373bc88adc7_cbe6a9af.jpg');
-  const posterThumb = getAssetUrl('/assets/aistudio/839064142_1780225249563203_4101194208461935408_n_6605cc29.png');
+  const posterImage = getAssetUrl('/assets/aistudio/839064142_1780225249563203_4101194208461935408_n_6605cc29.png');
+  const signaturePlated = getAssetUrl('/assets/aistudio/d24bcb86-b988-41f6-94b3-8373bc88adc7_cbe6a9af.jpg');
 
   return (
-    <section id="home" className="relative overflow-hidden pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-stone-200">
-      {/* Background ambient warmth */}
-      <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -z-10 w-80 h-80 bg-orange-100/40 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+    <section id="home" className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 border-b border-stone-200/80">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Core Value Proposition */}
+          {/* Left Column: Clean Minimalist Content */}
           <div className="lg:col-span-7 space-y-6">
             
-            {/* Clean Unboxed Metadata Kicker */}
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-amber-900 tracking-wide">
+            {/* Unboxed Metadata Kicker */}
+            <div className="flex items-center gap-2 text-xs font-semibold text-[#153e26] tracking-wide">
               <span>Eastern Samar State University</span>
-              <span aria-hidden="true" className="text-amber-400">·</span>
+              <span aria-hidden="true" className="text-stone-300">/</span>
               <span>The Entrepreneurial Mind (Elective 211)</span>
-              <span aria-hidden="true" className="text-amber-400">·</span>
-              <span className="text-emerald-700 font-bold">Batch 1 Verified</span>
+              <span aria-hidden="true" className="text-stone-300">/</span>
+              <span className="text-stone-600 font-normal">Borongan City</span>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold font-heading text-stone-900 tracking-tight leading-[1.15] text-balance">
-              Crispy & Golden Outside.{' '}
-              <span className="text-amber-600 block sm:inline">Sweet Banana Goodness</span>{' '}
-              Inside.
+            {/* Bold Headline */}
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-heading text-stone-900 tracking-tight leading-[1.12] text-balance">
+              Crispy Banana Churros,{' '}
+              <span className="text-[#153e26]">Drizzled to Perfection.</span>
             </h1>
 
-            {/* Description */}
-            <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl">
-              Turn your campus break into pure joy. Made from freshly mashed ripe bananas, shaped into golden spiral pastries, fried to a crackling crisp, and drizzled generously with sweet condensed milk, Bear Brand milk powder, and Milo.
+            {/* Subtitle */}
+            <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-xl">
+              Golden, crispy on the outside and sweet, soft on the inside. Made from ripe local bananas and served hot with sweetened condensed milk drizzle, Bear Brand milk powder, and Milo chocolate.
             </p>
 
-            {/* Value Callout Banner */}
-            <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <span className="text-xs font-bold text-amber-900 uppercase tracking-wider block">
-                  Campus Special Price
-                </span>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-black font-heading text-amber-700">3 for ₱50</span>
-                  <span className="text-xs text-stone-600 font-medium">only (1 pack with skewers)</span>
+            {/* Minimalist Price & Drizzle Banner inspired by poster */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-[#faf7ee] border border-[#153e26]/15 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                {/* Crimson Price Tag from Poster */}
+                <div className="px-3.5 py-2 rounded-xl bg-[#b91c1c] text-white text-center shadow-xs">
+                  <span className="text-[10px] uppercase font-bold tracking-wider block text-amber-200">
+                    Campus Special
+                  </span>
+                  <span className="text-xl sm:text-2xl font-black font-heading leading-none">
+                    3 FOR ₱50
+                  </span>
+                  <span className="text-[9px] font-bold text-amber-200 uppercase tracking-widest block">
+                    ONLY!
+                  </span>
+                </div>
+
+                <div className="leading-tight">
+                  <span className="text-xs font-bold text-[#153e26] block uppercase tracking-wide">
+                    Sweet & Creamy!
+                  </span>
+                  <span className="text-sm font-semibold text-stone-800">
+                    Drizzled with Condensed Milk
+                  </span>
+                  <span className="text-[11px] text-stone-500 block mt-0.5">
+                    Freshly fried sticks served in lunch packs
+                  </span>
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 text-xs text-stone-700">
-                <MapPin className="w-4 h-4 text-amber-600 shrink-0" />
-                <span>ESSU Main Campus Delivery & Pickup</span>
+
+              <div className="flex items-center gap-1.5 text-xs text-stone-600 self-start sm:self-center border-t sm:border-t-0 sm:border-l border-stone-200/80 pt-2 sm:pt-0 sm:pl-4">
+                <MapPin className="w-3.5 h-3.5 text-[#153e26] shrink-0" />
+                <span>ESSU Main Campus Handover</span>
               </div>
             </div>
 
-            {/* Primary & Secondary Action CTAs */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 onClick={onOpenOrderModal}
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-bold text-stone-950 bg-amber-400 hover:bg-amber-300 rounded-xl shadow-sm transition-all hover:shadow-md cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold text-white bg-[#153e26] hover:bg-[#0f2d1a] rounded-xl shadow-xs transition-colors cursor-pointer whitespace-nowrap"
               >
-                <ShoppingBag className="w-4 h-4" />
-                <span>Order Now for Merienda</span>
-                <ArrowRight className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4 text-[#facc15]" />
+                <span>Pre-Order on Campus</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
               <button
                 onClick={onOpenPdfModal}
-                className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-300 rounded-xl transition-colors cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center gap-2 px-4 py-3 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-300/80 rounded-xl transition-colors cursor-pointer whitespace-nowrap"
               >
-                <FileText className="w-4 h-4 text-stone-500" />
-                <span>View 23-Page Business Plan</span>
+                <FileText className="w-3.5 h-3.5 text-stone-500" />
+                <span>23-Page Business Plan</span>
               </button>
             </div>
 
-            {/* Trust Markers / Proof Points */}
-            <div className="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-stone-200/80 text-xs text-stone-600">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>100% Real Ripe Bananas</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Freshly Cooked Batch</span>
-              </div>
-              <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Student-Friendly ₱50 Price</span>
-              </div>
+            {/* Clean Minimal Proof Row */}
+            <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-stone-600">
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#153e26]" />
+                100% Real Ripe Bananas
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#153e26]" />
+                Batch 1 (12/12) Sold Out
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#153e26]" />
+                ₱50 / 3 Skewers
+              </span>
             </div>
+
           </div>
 
-          {/* Right Column: High-Res Real Product Card */}
+          {/* Right Column: Clean Visual Showcase */}
           <div className="lg:col-span-5">
-            <div className="relative group">
-              
-              {/* Main Photo Card */}
-              <div
-                onClick={() =>
-                  onOpenImageModal(
-                    heroImage,
-                    'Signature Plated Banana Churros',
-                    'Freshly fried spiral banana churros on sticks drizzled with sweetened condensed milk and dusted with chocolate malt.'
-                  )
-                }
-                className="cursor-pointer overflow-hidden rounded-3xl bg-white p-3 shadow-xl border border-stone-200/80 transition-transform duration-300 group-hover:scale-[1.01]"
-              >
-                <div className="relative aspect-4/3 rounded-2xl overflow-hidden bg-stone-100">
-                  <img
-                    src={heroImage}
-                    alt="Plated OSQE Banana Churros"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-                  
-                  {/* Photo Overlay Caption */}
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <p className="text-xs font-semibold text-amber-300">Formulated & Tested at ESSU</p>
-                    <p className="text-sm font-bold font-heading">Signature Banana Churros with Sweet Drizzle</p>
-                  </div>
-
-                  <span className="absolute top-3 right-3 px-2.5 py-1 text-[11px] font-bold bg-amber-400 text-stone-900 rounded-lg shadow-sm">
-                    Click to Zoom
-                  </span>
-                </div>
-
-                {/* Sub-strip with poster thumbnail & quick stat */}
-                <div className="mt-3 pt-3 border-t border-stone-100 flex items-center justify-between gap-3 text-xs">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={posterThumb}
-                      alt="Menu flyer thumbnail"
-                      className="w-10 h-10 object-cover rounded-lg border border-stone-200"
-                    />
-                    <div>
-                      <span className="font-bold text-stone-900 block">Official Promo Poster</span>
-                      <span className="text-stone-500 text-[11px]">3 for ₱50 Only</span>
-                    </div>
-                  </div>
-                  
-                  <div className="text-right">
-                    <span className="text-[11px] text-stone-500 block">First Batch Outcome</span>
-                    <span className="font-bold text-emerald-700">12/12 Sold Out</span>
-                  </div>
+            <div
+              onClick={() =>
+                onOpenImageModal(
+                  posterImage,
+                  'OSQE Banana Chorus Official Promotional Poster',
+                  'Official menu poster: Banana Churros with Condensed Milk Drizzle — 3 for ₱50 Only!'
+                )
+              }
+              className="group cursor-pointer rounded-3xl bg-white border border-[#153e26]/15 p-2.5 shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              <div className="relative aspect-3/4 rounded-2xl overflow-hidden bg-[#faf7ee]">
+                <img
+                  src={posterImage}
+                  alt="OSQE Banana Churros Official Poster"
+                  className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-500"
+                />
+                
+                {/* Minimalist Zoom Badge */}
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 text-[11px] font-bold bg-[#153e26] text-white rounded-lg shadow-xs opacity-90 group-hover:opacity-100">
+                  Click to View Full Poster
                 </div>
               </div>
 
-              {/* Floating Quality Badge */}
-              <div className="absolute -bottom-4 -left-4 bg-stone-900 text-white px-4 py-2.5 rounded-2xl shadow-lg border border-stone-800 flex items-center gap-2 text-xs">
-                <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
-                <div>
-                  <span className="font-bold block text-white font-heading">Sweet & Crunchy!</span>
-                  <span className="text-[11px] text-stone-400">Condensed Milk Drizzle</span>
-                </div>
+              {/* Minimal caption below */}
+              <div className="p-2.5 flex items-center justify-between text-xs text-stone-600">
+                <span className="font-semibold text-[#153e26]">Official Brand Poster</span>
+                <span className="text-[11px] text-stone-400">Elective 211 Submission</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        {/* 4-Item Quick Metric Banner */}
-        <div className="mt-12 pt-8 border-t border-stone-200/80 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          <div className="p-4 rounded-xl bg-white border border-stone-200">
-            <span className="text-xs text-stone-500 block">Snack Format</span>
-            <span className="text-xl sm:text-2xl font-bold font-heading text-stone-900">3 Sticks / Pack</span>
-            <span className="text-[11px] text-amber-700 font-medium block mt-0.5">Hot bamboo skewers</span>
+        {/* Minimalist 3-Stat Strip */}
+        <div className="mt-14 pt-8 border-t border-stone-200/80 grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] flex items-center justify-center shrink-0 mt-0.5 font-bold font-heading text-sm">
+              ₱50
+            </div>
+            <div>
+              <span className="text-sm font-bold text-stone-900 font-heading block">3 Churro Skewers</span>
+              <span className="text-xs text-stone-500">Served with condensed milk glaze and powdered toppings</span>
+            </div>
           </div>
-          <div className="p-4 rounded-xl bg-white border border-stone-200">
-            <span className="text-xs text-stone-500 block">Price Per Serving</span>
-            <span className="text-xl sm:text-2xl font-bold font-heading text-stone-900">₱50.00</span>
-            <span className="text-[11px] text-emerald-700 font-medium block mt-0.5">Student budget friendly</span>
+
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] flex items-center justify-center shrink-0 mt-0.5 font-bold font-heading text-sm">
+              🍌
+            </div>
+            <div>
+              <span className="text-sm font-bold text-stone-900 font-heading block">Local Ripe Bananas</span>
+              <span className="text-xs text-stone-500">Naturally sweet fruit puree blended into fresh pastry dough</span>
+            </div>
           </div>
-          <div className="p-4 rounded-xl bg-white border border-stone-200">
-            <span className="text-xs text-stone-500 block">Turnover Record</span>
-            <span className="text-xl sm:text-2xl font-bold font-heading text-stone-900">100% Sold</span>
-            <span className="text-[11px] text-stone-500 block mt-0.5">Batch 1: ₱600 Revenue</span>
-          </div>
-          <div className="p-4 rounded-xl bg-white border border-stone-200">
-            <span className="text-xs text-stone-500 block">Class & Campus</span>
-            <span className="text-xl sm:text-2xl font-bold font-heading text-stone-900">ESSU Main</span>
-            <span className="text-[11px] text-stone-500 block mt-0.5">Elective 211 Group</span>
+
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] flex items-center justify-center shrink-0 mt-0.5 font-bold font-heading text-sm">
+              🏫
+            </div>
+            <div>
+              <span className="text-sm font-bold text-stone-900 font-heading block">ESSU Main Campus</span>
+              <span className="text-xs text-stone-500">Direct delivery during class recesses and morning/afternoon breaks</span>
+            </div>
           </div>
         </div>
 
