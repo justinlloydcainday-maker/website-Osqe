@@ -1,0 +1,8 @@
+{
+  "name": "OSQE Banana Churros - ESSU Borongan",
+  "description": "Official business portfolio and pre-order platform for OSQE Banana Churros, an entrepreneurial food venture at Eastern Samar State University (ESSU). Crispy fried banana pastries drizzled with condensed milk & sweet toppings.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
