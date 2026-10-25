@@ -4,19 +4,25 @@
     <meta charset="utf-8" />
     <title>Redirecting to OSQE Banana Churros...</title>
     <script>
-      // Single Page Application redirect for GitHub Pages
-      // Stores current path and redirects to base URL
       (function() {
-        var segmentCount = 1; // 1 segment for https://<username>.github.io/<repo>/
-        var location = window.location;
-        var pathname = location.pathname;
-        var parts = pathname.split('/');
-        
-        // If repo subpath exists, redirect to repo root with path in query or hash
-        var repoRoot = parts.slice(0, 2).join('/') + '/';
-        var redirectUrl = repoRoot + '#' + pathname.slice(repoRoot.length) + location.search + location.hash;
-        
-        window.location.replace(redirectUrl);
+        var path = window.location.pathname;
+        var host = window.location.hostname;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        // If hosted on GitHub Pages (e.g. username.github.io/repo-name/...)
+        var segments = path.split('/').filter(Boolean);
+        var base = './';
+        if (host.includes('github.io') && segments.length > 0) {
+          // If first segment is repo name
+          var repo = segments[0];
+          base = '/' + repo + '/';
+          // If docs subfolder is present
+          if (segments[1] === 'docs') {
+            base = '/' + repo + '/docs/';
+          }
+        }
+        window.location.replace(base + search + (hash ? hash : '#home'));
       })();
     </script>
   </head>

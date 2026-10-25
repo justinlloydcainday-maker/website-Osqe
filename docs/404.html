@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting to OSQE Banana Churros...</title>
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        var host = window.location.hostname;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        // If hosted on GitHub Pages (e.g. username.github.io/repo-name/...)
+        var segments = path.split('/').filter(Boolean);
+        var base = './';
+        if (host.includes('github.io') && segments.length > 0) {
+          // If first segment is repo name
+          var repo = segments[0];
+          base = '/' + repo + '/';
+          // If docs subfolder is present
+          if (segments[1] === 'docs') {
+            base = '/' + repo + '/docs/';
+          }
+        }
+        window.location.replace(base + search + (hash ? hash : '#home'));
+      })();
+    </script>
+  </head>
+  <body style="font-family: system-ui, -apple-system, sans-serif; background: #faf8f2; color: #1c1917; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center;">
+    <div>
+      <h2 style="color: #153e26; margin-bottom: 8px;">Loading OSQE Banana Churros...</h2>
+      <p style="color: #57534e; font-size: 14px;">Redirecting you to the main page. If you are not redirected automatically, <a href="./" style="color: #153e26; font-weight: bold;">click here</a>.</p>
+    </div>
+  </body>
+</html>

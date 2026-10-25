@@ -29,30 +29,62 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Diagnostics fallback for unbuilt GitHub Pages branches -->
+    <!-- Automatic bridge for unbuilt GitHub Pages root branch deployments -->
     <script>
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var root = document.getElementById('root');
-          if (root && root.childNodes.length === 0) {
-            var host = window.location.hostname;
-            if (host.includes('github.io')) {
-              root.innerHTML = '<div style="font-family:system-ui,-apple-system,sans-serif;max-width:580px;margin:60px auto;padding:24px;border:1px solid #fecaca;background:#fff5f5;border-radius:16px;color:#991b1b;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1);">' +
-                '<h2 style="margin-top:0;font-size:20px;font-weight:800;color:#7f1d1d;display:flex;align-items:center;gap:8px;">⚠️ GitHub Pages Setup Required</h2>' +
-                '<p style="font-size:14px;line-height:1.6;color:#374151;margin:12px 0;">The website loaded <code>index.html</code> directly from the repository branch root instead of running the built React application from <code>dist/</code>.</p>' +
-                '<div style="background:#ffffff;padding:16px;border-radius:12px;border:1px solid #fee2e2;font-size:13px;line-height:1.7;color:#1f2937;margin:16px 0;">' +
-                '<strong style="color:#153e26;">How to display the live website in 3 steps:</strong><br>' +
-                '1. Open your GitHub Repository and click <strong>Settings</strong> (top tab).<br>' +
-                '2. On the left sidebar, click <strong>Pages</strong>.<br>' +
-                '3. Under <strong>Build and deployment → Source</strong>, select <strong>"GitHub Actions"</strong> (instead of <em>Deploy from a branch</em>).<br>' +
-                '4. GitHub Actions will run <code>.github/workflows/deploy.yml</code> and build the <code>dist/</code> bundle automatically in ~1 minute!' +
-                '</div>' +
-                '<a href="javascript:location.reload()" style="display:inline-block;background:#153e26;color:#facc15;padding:10px 18px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;">Refresh Once Deployed</a>' +
-                '</div>';
-            }
+      (function() {
+        var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        var pathname = window.location.pathname;
+        var isDocs = pathname.includes('/docs');
+
+        // Check if this document contains uncompiled /src/main.tsx
+        var scripts = document.getElementsByTagName('script');
+        var hasDevScript = false;
+        for (var i = 0; i < scripts.length; i++) {
+          if (scripts[i].src && scripts[i].src.indexOf('main.tsx') !== -1) {
+            hasDevScript = true;
+            break;
           }
-        }, 2000);
-      });
+        }
+
+        // If running unbundled source on a static host (like GitHub Pages branch deploy):
+        if (hasDevScript && !isLocal && !isDocs) {
+          var base = pathname.endsWith('/') ? pathname : pathname + '/';
+          // Auto-redirect to the pre-compiled /docs/ distribution
+          window.location.replace(base + 'docs/' + window.location.search + window.location.hash);
+        }
+      })();
+    </script>
+
+    <!-- Immediate visual safety-net if scripts fail to render #root -->
+    <script>
+      setTimeout(function() {
+        var root = document.getElementById('root');
+        if (root && root.childNodes.length === 0) {
+          root.innerHTML = '<div style="font-family:system-ui,-apple-system,sans-serif;max-width:620px;margin:50px auto;padding:28px;border:1px solid #fde68a;background:#fffbeb;border-radius:20px;color:#92400e;box-shadow:0 20px 25px -5px rgba(0,0,0,0.08);">' +
+            '<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">' +
+            '<span style="font-size:28px;">🍌</span>' +
+            '<h2 style="margin:0;font-size:20px;font-weight:800;color:#78350f;">OSQE Banana Churros • GitHub Pages Live Setup</h2>' +
+            '</div>' +
+            '<p style="font-size:14px;line-height:1.6;color:#451a03;margin:0 0 16px 0;">This repository includes a <strong>pre-compiled production build</strong>. To see your live interactive website immediately, choose either of these 1-minute steps:</p>' +
+            '<div style="background:#ffffff;padding:16px;border-radius:14px;border:1px solid #fef3c7;font-size:13px;line-height:1.7;color:#1c1917;margin-bottom:16px;">' +
+            '<strong style="color:#153e26;font-size:14px;">Option A (Fastest - 10 Seconds):</strong><br>' +
+            '1. Go to your GitHub Repo → <strong>Settings</strong> tab → <strong>Pages</strong>.<br>' +
+            '2. Under <em>Build and deployment → Branch</em>, change the folder from <code>/ (root)</code> to <strong><code>/docs</code></strong>.<br>' +
+            '3. Click <strong>Save</strong>! Your website will load with full images & styling!' +
+            '</div>' +
+            '<div style="background:#ffffff;padding:16px;border-radius:14px;border:1px solid #fef3c7;font-size:13px;line-height:1.7;color:#1c1917;margin-bottom:16px;">' +
+            '<strong style="color:#153e26;font-size:14px;">Option B (GitHub Actions - Automated):</strong><br>' +
+            '1. Go to GitHub Repo → <strong>Settings</strong> → <strong>Pages</strong>.<br>' +
+            '2. Change <em>Source</em> from <em>Deploy from a branch</em> to <strong>"GitHub Actions"</strong>.<br>' +
+            '3. Done! GitHub will automatically run <code>.github/workflows/deploy.yml</code> on every commit.' +
+            '</div>' +
+            '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
+            '<a href="./docs/" style="display:inline-block;background:#153e26;color:#facc15;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;">Open /docs Version Directly &rarr;</a>' +
+            '<a href="javascript:location.reload()" style="display:inline-block;background:#e5e7eb;color:#374151;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;">Refresh Page</a>' +
+            '</div>' +
+            '</div>';
+        }
+      }, 1200);
     </script>
   </body>
 </html>

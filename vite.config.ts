@@ -5,11 +5,13 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   // Support GitHub Actions deployment where GITHUB_REPOSITORY is defined (e.g. "user/repo")
+  // Support GitHub Actions deployment where GITHUB_REPOSITORY is defined (e.g. "user/repo")
   // Or manual base specification via BASE_PATH env var
   const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : null;
-  const base = process.env.BASE_PATH || (repoName ? `/${repoName}/` : './');
+  const rawBase = process.env.BASE_PATH || (repoName ? `/${repoName}/` : './');
+  const base = rawBase === './' ? './' : (rawBase.endsWith('/') ? rawBase : `${rawBase}/`);
 
-  const currentDir = typeof import.meta.dirname !== 'undefined' ? import.meta.dirname : __dirname;
+  const currentDir = typeof import.meta.dirname !== 'undefined' ? import.meta.dirname : process.cwd();
 
   return {
     base,
