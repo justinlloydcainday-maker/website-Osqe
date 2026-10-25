@@ -32,13 +32,16 @@ export default function DocumentationSection({ onOpenImageModal }: Documentation
           <div>
             <div className="flex items-center gap-2 text-xs font-semibold text-[#153e26] tracking-wide mb-1">
               <Camera className="w-3.5 h-3.5" />
-              <span>Photographic Evidence</span>
+              <span>Other Website Features</span>
               <span aria-hidden="true" className="text-stone-300">/</span>
-              <span>11 Verified Photos</span>
+              <span>Photographic Archive</span>
             </div>
             <h2 className="text-3xl font-extrabold font-heading text-stone-900 tracking-tight">
-              Documentation & Campus Rollout
+              Documentation & Campus Rollout Gallery
             </h2>
+            <p className="mt-1 text-sm text-stone-600">
+              Photographic evidence of formulation, kitchen frying brigade, and student merienda distribution at ESSU.
+            </p>
           </div>
 
           {/* Clean Minimalist Category Tabs */}

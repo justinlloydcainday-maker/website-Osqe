@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShoppingBag, Copy, Check, CheckCircle2, MapPin, Sparkles } from 'lucide-react';
+import { ShoppingBag, Copy, Check, CheckCircle2, MapPin, Sparkles, Phone, Mail, Clock } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { BUSINESS_INFO } from '../data/businessData';
 
@@ -12,6 +12,7 @@ export default function OrderSection() {
   const [customLocation, setCustomLocation] = useState<string>('');
   const [deliveryTime, setDeliveryTime] = useState<string>('Morning Merienda (9:30 AM - 10:30 AM)');
   const [notes, setNotes] = useState<string>('');
+  const [formError, setFormError] = useState<string>('');
 
   const [extraCondense, setExtraCondense] = useState<boolean>(true);
   const [bearBrandDust, setBearBrandDust] = useState<boolean>(true);
@@ -27,10 +28,11 @@ export default function OrderSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!customerName || !contactNumber) {
-      alert('Please enter your name and contact number.');
+    if (!customerName.trim() || !contactNumber.trim()) {
+      setFormError('Please enter both your full name and contact number.');
       return;
     }
+    setFormError('');
 
     const newOrderId = `OSQE-${Math.floor(1000 + Math.random() * 9000)}`;
     setOrderId(newOrderId);
@@ -81,14 +83,14 @@ Please prepare for ESSU campus merienda! Thank you!`;
   };
 
   return (
-    <section id="order" className="py-16 lg:py-20 bg-white border-b border-stone-200/80">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+    <section id="contact" className="py-16 lg:py-20 bg-white border-b border-stone-200/80">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <div className="text-center max-w-xl mx-auto mb-10">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#153e26] bg-[#153e26]/10 px-3 py-1 rounded-full mb-2">
             <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Campus Pre-Order</span>
+            <span>Contact Us & Campus Pre-Order</span>
           </div>
           <h2 className="text-3xl font-extrabold font-heading text-stone-900 tracking-tight">
             Order Your Banana Churros
@@ -98,9 +100,36 @@ Please prepare for ESSU campus merienda! Thank you!`;
           </p>
         </div>
 
+        {/* Direct Contact Bar */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 text-xs">
+          <div className="p-3.5 rounded-xl bg-[#faf8f2] border border-stone-200/80 flex items-center gap-3">
+            <Phone className="w-4 h-4 text-[#153e26] shrink-0" />
+            <div className="min-w-0">
+              <span className="font-bold text-stone-900 block truncate">Call / SMS / GCash</span>
+              <span className="text-stone-600 truncate block">{BUSINESS_INFO.contactPhone}</span>
+            </div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-[#faf8f2] border border-stone-200/80 flex items-center gap-3">
+            <Mail className="w-4 h-4 text-[#153e26] shrink-0" />
+            <div className="min-w-0">
+              <span className="font-bold text-stone-900 block truncate">Official Email</span>
+              <span className="text-stone-600 truncate block">{BUSINESS_INFO.contactEmail}</span>
+            </div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-[#faf8f2] border border-stone-200/80 flex items-center gap-3">
+            <Clock className="w-4 h-4 text-[#153e26] shrink-0" />
+            <div className="min-w-0">
+              <span className="font-bold text-stone-900 block truncate">Operating Hours</span>
+              <span className="text-stone-600 truncate block">{BUSINESS_INFO.orderHours}</span>
+            </div>
+          </div>
+        </div>
+
         {/* Form Container */}
         {isSubmitted ? (
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#faf7ee] border border-[#153e26]/20 shadow-xs space-y-6 animate-in fade-in duration-200">
+          <div className="p-6 sm:p-8 rounded-2xl bg-[#faf7ee] border border-[#153e26]/20 shadow-xs space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#153e26] text-[#facc15] flex items-center justify-center shrink-0">
                 <CheckCircle2 className="w-6 h-6" />
@@ -164,6 +193,12 @@ Please prepare for ESSU campus merienda! Thank you!`;
             onSubmit={handleSubmit}
             className="p-6 sm:p-8 rounded-2xl bg-[#faf7ee] border border-stone-200/80 space-y-6"
           >
+            {formError && (
+              <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-700 font-medium">
+                {formError}
+              </div>
+            )}
+
             {/* Quantity Selector */}
             <div className="space-y-2">
               <label className="text-xs font-bold text-stone-800 uppercase tracking-wide block">

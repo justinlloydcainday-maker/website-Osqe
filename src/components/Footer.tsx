@@ -1,15 +1,24 @@
-import { ArrowUp, FileText, ShoppingBag, MapPin, Mail, Phone } from 'lucide-react';
+import { ArrowUp, FileText, ShoppingBag } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/businessData';
 import { getAssetUrl } from '../utils/assetHelper';
+import { RubricSectionId, RUBRIC_SECTIONS } from '../types/navigation';
 
 interface FooterProps {
   onOpenPdfModal: () => void;
   onOpenOrderModal: () => void;
+  onSelectSection?: (id: RubricSectionId) => void;
 }
 
-export default function Footer({ onOpenPdfModal, onOpenOrderModal }: FooterProps) {
+export default function Footer({ onOpenPdfModal, onOpenOrderModal, onSelectSection }: FooterProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSectionClick = (id: RubricSectionId) => {
+    if (onSelectSection) {
+      onSelectSection(id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -37,31 +46,21 @@ export default function Footer({ onOpenPdfModal, onOpenOrderModal }: FooterProps
             </span>
           </div>
 
-          {/* Col 2: Navigation */}
+          {/* Col 2: Navigation following Rubric — ALL CLICKABLE */}
           <div className="space-y-2.5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-200">Navigation</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-200">Rubric Sections</h4>
             <ul className="space-y-1.5 text-stone-300 text-xs">
-              <li>
-                <a href="#product" className="hover:text-white transition-colors">Menu & Recipe</a>
-              </li>
-              <li>
-                <a href="#gallery" className="hover:text-white transition-colors">Photo Gallery</a>
-              </li>
-              <li>
-                <a href="#financials" className="hover:text-white transition-colors">Unit Economics</a>
-              </li>
-              <li>
-                <a href="#team" className="hover:text-white transition-colors">Student Team</a>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenPdfModal}
-                  className="hover:text-white transition-colors text-left inline-flex items-center gap-1 cursor-pointer"
-                >
-                  <FileText className="w-3 h-3 text-amber-300" />
-                  <span>23-Page Business Plan</span>
-                </button>
-              </li>
+              {RUBRIC_SECTIONS.map((sec) => (
+                <li key={sec.id}>
+                  <button
+                    onClick={() => handleSectionClick(sec.id)}
+                    className="hover:text-white transition-colors cursor-pointer text-left flex items-center gap-1.5"
+                  >
+                    <span className="text-amber-300/70 font-mono text-[10px]">{sec.num}.</span>
+                    <span>{sec.rubricName}</span>
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -81,21 +80,31 @@ export default function Footer({ onOpenPdfModal, onOpenOrderModal }: FooterProps
                 <strong className="text-white block">Instructor:</strong>
                 {BUSINESS_INFO.instructor}
               </p>
+              <p className="pt-1 text-[11px] text-stone-300">
+                <strong className="text-white">Ownership:</strong> {BUSINESS_INFO.ownership}
+              </p>
             </div>
           </div>
 
-          {/* Col 4: Campus Orders */}
+          {/* Col 4: Campus Orders & PDF */}
           <div className="space-y-2.5">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-200">Campus Orders</h4>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-amber-200">Pre-Order & PDF</h4>
             <p className="text-stone-300 text-xs">
               Handover available at ESSU Main Campus during morning & afternoon merienda.
             </p>
             <button
               onClick={onOpenOrderModal}
-              className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-bold text-[#153e26] bg-[#facc15] hover:bg-amber-300 rounded-lg transition-colors cursor-pointer mt-2"
+              className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-bold text-[#153e26] bg-[#facc15] hover:bg-amber-300 rounded-lg transition-colors cursor-pointer mt-2 shadow-2xs"
             >
               <ShoppingBag className="w-3.5 h-3.5" />
               <span>Pre-Order · 3 for ₱50</span>
+            </button>
+            <button
+              onClick={onOpenPdfModal}
+              className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold text-stone-200 bg-white/10 hover:bg-white/20 rounded-lg transition-colors cursor-pointer mt-1"
+            >
+              <FileText className="w-3.5 h-3.5 text-amber-300" />
+              <span>23-Page Business Plan</span>
             </button>
           </div>
 

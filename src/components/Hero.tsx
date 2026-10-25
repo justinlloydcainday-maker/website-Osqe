@@ -1,19 +1,25 @@
-import { ArrowRight, ShoppingBag, FileText, CheckCircle2, Sparkles, MapPin } from 'lucide-react';
+import { ArrowRight, ShoppingBag, FileText, CheckCircle2, MapPin, ShieldCheck, Sparkles } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/businessData';
 import { getAssetUrl } from '../utils/assetHelper';
+import { RubricSectionId } from '../types/navigation';
 
 interface HeroProps {
   onOpenOrderModal: () => void;
   onOpenPdfModal: () => void;
   onOpenImageModal: (imgUrl: string, title: string, caption?: string) => void;
+  onNavigateSection?: (id: RubricSectionId) => void;
 }
 
-export default function Hero({ onOpenOrderModal, onOpenPdfModal, onOpenImageModal }: HeroProps) {
+export default function Hero({
+  onOpenOrderModal,
+  onOpenPdfModal,
+  onOpenImageModal,
+  onNavigateSection,
+}: HeroProps) {
   const posterImage = getAssetUrl('/assets/aistudio/839064142_1780225249563203_4101194208461935408_n_6605cc29.png');
-  const signaturePlated = getAssetUrl('/assets/aistudio/d24bcb86-b988-41f6-94b3-8373bc88adc7_cbe6a9af.jpg');
 
   return (
-    <section id="home" className="relative pt-10 pb-16 lg:pt-16 lg:pb-24 border-b border-stone-200/80">
+    <section id="home" className="relative pt-8 pb-14 lg:pt-12 lg:pb-20 border-b border-stone-200/80 bg-[#faf8f2]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
@@ -21,7 +27,7 @@ export default function Hero({ onOpenOrderModal, onOpenPdfModal, onOpenImageModa
           <div className="lg:col-span-7 space-y-6">
             
             {/* Unboxed Metadata Kicker */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#153e26] tracking-wide">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-[#153e26] tracking-wide">
               <span>Eastern Samar State University</span>
               <span aria-hidden="true" className="text-stone-300">/</span>
               <span>The Entrepreneurial Mind (Elective 211)</span>
@@ -86,6 +92,16 @@ export default function Hero({ onOpenOrderModal, onOpenPdfModal, onOpenImageModa
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
+              {onNavigateSection && (
+                <button
+                  onClick={() => onNavigateSection('permits')}
+                  className="inline-flex items-center gap-2 px-4 py-3 text-xs font-bold text-amber-900 bg-amber-50 hover:bg-amber-100/80 border border-amber-300 rounded-xl transition-colors cursor-pointer whitespace-nowrap shadow-2xs"
+                >
+                  <ShieldCheck className="w-4 h-4 text-amber-800" />
+                  <span>Permits & Legal Dossier</span>
+                </button>
+              )}
+
               <button
                 onClick={onOpenPdfModal}
                 className="inline-flex items-center gap-2 px-4 py-3 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-300/80 rounded-xl transition-colors cursor-pointer whitespace-nowrap"
@@ -133,8 +149,9 @@ export default function Hero({ onOpenOrderModal, onOpenPdfModal, onOpenImageModa
                 />
                 
                 {/* Minimalist Zoom Badge */}
-                <div className="absolute bottom-3 right-3 px-2.5 py-1 text-[11px] font-bold bg-[#153e26] text-white rounded-lg shadow-xs opacity-90 group-hover:opacity-100">
-                  Click to View Full Poster
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 text-[11px] font-bold bg-[#153e26] text-white rounded-lg shadow-xs opacity-90 group-hover:opacity-100 flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3 text-[#facc15]" />
+                  <span>Click to View Full Poster</span>
                 </div>
               </div>
 
@@ -148,37 +165,58 @@ export default function Hero({ onOpenOrderModal, onOpenPdfModal, onOpenImageModa
 
         </div>
 
-        {/* Minimalist 3-Stat Strip */}
-        <div className="mt-14 pt-8 border-t border-stone-200/80 grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] flex items-center justify-center shrink-0 mt-0.5 font-bold font-heading text-sm">
+        {/* Minimalist 3-Stat Strip — ALL CLICKABLE TO JUMP TO RESPECTIVE RUBRIC SECTIONS */}
+        <div className="mt-12 pt-8 border-t border-stone-200/80 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <button
+            onClick={() => onNavigateSection?.('products')}
+            className="p-3.5 rounded-xl bg-white border border-stone-200 hover:border-[#153e26]/40 transition-colors text-left flex items-start gap-3 cursor-pointer group shadow-2xs"
+          >
+            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] group-hover:bg-[#153e26] group-hover:text-white transition-colors flex items-center justify-center shrink-0 font-bold font-heading text-sm">
               ₱50
             </div>
             <div>
-              <span className="text-sm font-bold text-stone-900 font-heading block">3 Churro Skewers</span>
-              <span className="text-xs text-stone-500">Served with condensed milk glaze and powdered toppings</span>
+              <span className="text-sm font-bold text-stone-900 font-heading block group-hover:text-[#153e26] transition-colors">
+                3 Churro Skewers
+              </span>
+              <span className="text-xs text-stone-500">
+                Condensed milk glaze, Bear Brand powder & Milo malt →
+              </span>
             </div>
-          </div>
+          </button>
 
-          <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] flex items-center justify-center shrink-0 mt-0.5 font-bold font-heading text-sm">
+          <button
+            onClick={() => onNavigateSection?.('ingredients')}
+            className="p-3.5 rounded-xl bg-white border border-stone-200 hover:border-[#153e26]/40 transition-colors text-left flex items-start gap-3 cursor-pointer group shadow-2xs"
+          >
+            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] group-hover:bg-[#153e26] group-hover:text-white transition-colors flex items-center justify-center shrink-0 font-bold font-heading text-sm">
               🍌
             </div>
             <div>
-              <span className="text-sm font-bold text-stone-900 font-heading block">Local Ripe Bananas</span>
-              <span className="text-xs text-stone-500">Naturally sweet fruit puree blended into fresh pastry dough</span>
+              <span className="text-sm font-bold text-stone-900 font-heading block group-hover:text-[#153e26] transition-colors">
+                100% Real Bananas
+              </span>
+              <span className="text-xs text-stone-500">
+                Naturally sweet fruit puree blended into fresh pastry dough →
+              </span>
             </div>
-          </div>
+          </button>
 
-          <div className="flex items-start gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] flex items-center justify-center shrink-0 mt-0.5 font-bold font-heading text-sm">
+          <button
+            onClick={() => onNavigateSection?.('contact')}
+            className="p-3.5 rounded-xl bg-white border border-stone-200 hover:border-[#153e26]/40 transition-colors text-left flex items-start gap-3 cursor-pointer group shadow-2xs"
+          >
+            <div className="w-8 h-8 rounded-lg bg-[#153e26]/10 text-[#153e26] group-hover:bg-[#153e26] group-hover:text-white transition-colors flex items-center justify-center shrink-0 font-bold font-heading text-sm">
               🏫
             </div>
             <div>
-              <span className="text-sm font-bold text-stone-900 font-heading block">ESSU Main Campus</span>
-              <span className="text-xs text-stone-500">Direct delivery during class recesses and morning/afternoon breaks</span>
+              <span className="text-sm font-bold text-stone-900 font-heading block group-hover:text-[#153e26] transition-colors">
+                ESSU Main Campus
+              </span>
+              <span className="text-xs text-stone-500">
+                Pre-order and pickup at Technology Building & Quad →
+              </span>
             </div>
-          </div>
+          </button>
         </div>
 
       </div>

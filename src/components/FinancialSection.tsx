@@ -18,22 +18,22 @@ export default function FinancialSection({ onOpenImageModal }: FinancialSectionP
   const profitMargin = (netProfit / totalRevenue) * 100;
 
   return (
-    <section id="financials" className="py-16 lg:py-20 bg-white border-b border-stone-200/80">
+    <section id="features" className="py-16 lg:py-20 bg-white border-b border-stone-200/80">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="max-w-2xl mb-10">
+        <div className="max-w-3xl mb-10">
           <div className="flex items-center gap-2 text-xs font-semibold text-[#153e26] tracking-wide mb-1">
             <DollarSign className="w-3.5 h-3.5" />
-            <span>Financial Statement</span>
+            <span>Other Website Features</span>
             <span aria-hidden="true" className="text-stone-300">/</span>
-            <span>Elective 211 Requirement</span>
+            <span>Financial Statements & Batch Economics</span>
           </div>
           <h2 className="text-3xl font-extrabold font-heading text-stone-900 tracking-tight">
-            Unit Costing & Batch Economics
+            Unit Costing, Batch Simulator & SWOT
           </h2>
           <p className="mt-1 text-sm text-stone-600">
-            Transparent pricing validated by actual ingredient receipts and campus sales records.
+            Interactive financial modeling validated by actual campus receipts (Batch 1: ₱600 Gross, ₱194 Net Profit, 32.3% Margin).
           </p>
         </div>
 
@@ -145,7 +145,7 @@ export default function FinancialSection({ onOpenImageModal }: FinancialSectionP
             </div>
           </div>
 
-          {/* Calculator */}
+          {/* Interactive Calculator */}
           <div className="lg:col-span-5">
             <div className="rounded-2xl bg-[#faf7ee] border border-[#153e26]/15 p-5 space-y-4 shadow-2xs">
               <div className="flex items-center gap-2">
@@ -224,7 +224,7 @@ export default function FinancialSection({ onOpenImageModal }: FinancialSectionP
         {/* Minimalist SWOT Grid */}
         <div className="pt-6 border-t border-stone-200/80">
           <h3 className="text-lg font-bold font-heading text-stone-900 mb-4">
-            SWOT Analysis Summary
+            SWOT Analysis Matrix
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">

@@ -11,7 +11,7 @@ export interface TeamMember {
   education?: string;
   skills?: string[];
   responsibilities: string;
-  avatarUrl?: string;
+  avatarInitials: string;
 }
 
 export interface ExpenseItem {
@@ -29,6 +29,13 @@ export interface ProductionStep {
   action: string;
   description: string;
   iconName: string;
+}
+
+export interface LegalDossierItem {
+  code: string;
+  title: string;
+  badge: string;
+  desc: string;
 }
 
 export interface DocumentationPhoto {
@@ -60,6 +67,8 @@ export const BUSINESS_INFO = {
   contactEmail: 'justinlloydcainday@gmail.com',
   orderHours: '7:30 AM – 5:30 PM (School Days)',
   pickupLocation: 'ESSU Main Campus Grounds & Technology Building',
+  permitNumber: '2026–BPLO–0094821',
+  permitDate: 'January 15, 2026',
 };
 
 export const COMBINED_EXPENSES: ExpenseItem[] = [
@@ -159,7 +168,7 @@ export const PRODUCTION_STEPS: ProductionStep[] = [
     title: 'Select & Puree Fresh Bananas',
     action: 'Peel, Slice & Blend',
     description:
-      'Carefully select ripe local bananas for maximum natural aroma. Slice into uniform medallions and blend into a silky, luscious fruit puree.',
+      'Carefully select ripe local bananas for maximum natural sweetness and aroma. Slice into uniform medallions and blend into a silky fruit puree.',
     iconName: 'Apple',
   },
   {
@@ -167,7 +176,7 @@ export const PRODUCTION_STEPS: ProductionStep[] = [
     title: 'Mix Soft Pastry Dough',
     action: 'Fold, Cream & Knead',
     description:
-      'Combine the banana puree with sifted flour, margarine, sugar, egg, and a dash of milk. Knead until a smooth, pliable dough with sweet banana fragrance forms.',
+      'Combine the banana puree with sifted flour, margarine, sugar, egg, and a touch of milk. Knead until a smooth, pliable dough forms.',
     iconName: 'CookingPot',
   },
   {
@@ -183,7 +192,7 @@ export const PRODUCTION_STEPS: ProductionStep[] = [
     title: 'Golden Deep Frying',
     action: 'Crisp at Controlled Heat',
     description:
-      'Immerse skewers in clean, pre-heated oil. Fry until the crust blossoms into a rich golden amber that crackles gently while the inside stays pillow-soft.',
+      'Immerse skewers in clean, pre-heated oil. Fry until the crust blossoms into a rich golden amber that crackles gently while the inside stays tender.',
     iconName: 'Flame',
   },
   {
@@ -191,8 +200,47 @@ export const PRODUCTION_STEPS: ProductionStep[] = [
     title: 'Drizzle & Dust to Perfection',
     action: 'Sweet Glaze & Pack',
     description:
-      'Drain on clean racks, box 3 hot churros per pack, generously zigzag sweet condensed milk, and dust with Bear Brand milk and Milo chocolate powder.',
+      'Drain on clean racks, box 3 hot churros per pack, generously zigzag sweet condensed milk, and dust with Bear Brand milk powder and Milo.',
     iconName: 'CheckCircle2',
+  },
+];
+
+export const LEGAL_DOSSIER_ITEMS: LegalDossierItem[] = [
+  {
+    code: 'DTI Registration',
+    title: 'Business Name Registration',
+    badge: 'Act 3883',
+    desc: 'Registration as "OSQE Banana Churros Enterprise" under Sole Proprietorship for formal trade name protection.',
+  },
+  {
+    code: "Mayor's Permit",
+    title: 'City Business Permit & Licensing (BPLO)',
+    badge: 'LGU Borongan',
+    desc: 'Permit No. 2026–BPLO–0094821 issued for food retail and snack production kiosk operations with all municipal fees recorded.',
+  },
+  {
+    code: 'Food Safety Act',
+    title: 'Food Safety Compliance & Storage',
+    badge: 'RA 10611',
+    desc: 'Strict cold storage of condensed milk, hot oil held between 175°C-190°C, and daily fresh banana quality audits.',
+  },
+  {
+    code: 'Sanitation Code',
+    title: 'Sanitary Clearance & Food Handlers',
+    badge: 'PD 856',
+    desc: 'Mandatory personnel food handler health cards, sterile gloves, hairnets, and annual sanitary clearance.',
+  },
+  {
+    code: 'Allergen Mandate',
+    title: 'Mandatory Allergen Disclosure',
+    badge: 'RA 7394',
+    desc: 'Clear consumer notification: Contains Dairy (Condensed Milk, Milk Powder) and Gluten (Wheat Flour). Expiry & manufacturing labeling.',
+  },
+  {
+    code: 'Environmental & Fire',
+    title: 'Fire Safety & Waste Management',
+    badge: 'RA 9514 & RA 9003',
+    desc: 'Certified Class K fire extinguisher for deep frying; used cooking oil captured and processed without public drainage discharge.',
   },
 ];
 
@@ -310,8 +358,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     education: 'Eastern Samar State University (ESSU)',
     skills: ['Strategic Leadership', 'Fast Decision Making', 'Problem Solving', 'Creativity'],
     responsibilities:
-      'Provides overarching strategic leadership, drives major business decisions, and guarantees that the enterprise fulfills both academic, financial, and operational objectives.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_16.png'),
+      'Provides overarching strategic leadership, drives major business decisions, and guarantees that the enterprise fulfills academic, financial, and operational goals.',
+    avatarInitials: 'OD',
   },
   {
     name: 'Justin Lloyd D. Cainday',
@@ -324,8 +372,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     education: 'Eastern Samar State University (ESSU)',
     skills: ['Operations Management', 'Quality Assurance', 'Team Supervision', 'Customer Relations'],
     responsibilities:
-      'Directs day-to-day operations, coordinates employee workflows, oversees food quality compliance, manages distribution schedules, and drives customer delight.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_17.png'),
+      'Directs daily operations, coordinates team workflows, oversees food quality compliance, manages distribution schedules, and drives customer satisfaction.',
+    avatarInitials: 'JC',
   },
   {
     name: 'Boyd Benidec C. Operario',
@@ -337,7 +385,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Recipe Standardization', 'Kitchen Supervision', 'Food Safety & Hygiene', 'Portion Control'],
     responsibilities:
       'Supervises the kitchen brigade, oversees dough formulation and frying consistency, and ensures every order is cooked to golden perfection and delivered on time.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_19.png'),
+    avatarInitials: 'BO',
   },
   {
     name: 'Jasmine C. Bocton',
@@ -351,7 +399,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Budget Management', 'Cash Flow Tracking', 'Expense Control', 'Financial Auditing'],
     responsibilities:
       'Stewards the enterprise capital, reconciles daily expenses and revenue receipts, ensures prudent fund allocation, and guarantees financial transparency.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_21.png'),
+    avatarInitials: 'JB',
   },
   {
     name: 'Ronniela C. Montana',
@@ -361,6 +409,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Financial Statement Prep', 'Profit & Loss Analysis', 'Bookkeeping', 'Cost Estimation'],
     responsibilities:
       'Monitors income flows, compiles formal financial reports, assists in pricing evaluations, and maintains organized financial ledgers.',
+    avatarInitials: 'RM',
   },
   {
     name: 'Kieth Hierras',
@@ -370,6 +419,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Ingredient Prepping', 'Portion Weighing', 'Sanitation Discipline', 'Equipment Setup'],
     responsibilities:
       'Prepares fresh bananas, measures accurate ingredient proportions, assists in blending and skewering, and upholds impeccable workstation hygiene.',
+    avatarInitials: 'KH',
   },
   {
     name: 'James Eman G. Ero (Ero Eman)',
@@ -382,7 +432,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Deep Frying Control', 'Temperature Monitoring', 'Fast Order Pacing', 'Food Presentation'],
     responsibilities:
       'Operates the frying stations, monitors oil heat precision, ensures ideal crisp exterior and tender core, and boxes churros promptly.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_23.png'),
+    avatarInitials: 'JE',
   },
   {
     name: 'Anthony T. Moratal (Mark Anthony)',
@@ -394,7 +444,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Prep Assistance', 'Utensil Sanitation', 'Tool Organization', 'Packaging Logistics'],
     responsibilities:
       'Assists the Chef de Cuisine in mixing ingredients, cooking dishes, organizing cooking tools, and maintaining rigorous cleanliness standards.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_18.png'),
+    avatarInitials: 'AM',
   },
   {
     name: 'Mark Leander M. Boco',
@@ -408,7 +458,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Transaction Recording', 'Receipts Filing', 'Cost Tracking', 'Variance Analysis'],
     responsibilities:
       'Assists in tracking itemized ingredient costs, recording sales collections, and archiving receipts for academic audit submission.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_22.png'),
+    avatarInitials: 'MB',
   },
   {
     name: 'Renz C. Plaquia',
@@ -422,7 +472,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     skills: ['Spreadsheet Accounting', 'Cash Reconciliation', 'Record Keeping', 'Time Management'],
     responsibilities:
       'Assists in reconciling cash sales with physical pack counts, monitoring inventory usage, and preparing backup ledger documentation.',
-    avatarUrl: getAssetUrl('/pdf_pages/page_20.png'),
+    avatarInitials: 'RP',
   },
 ];
 

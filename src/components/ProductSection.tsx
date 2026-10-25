@@ -1,60 +1,43 @@
-import { ShoppingBag, Check, Sparkles, Flame, Apple, CookingPot, CheckCircle2 } from 'lucide-react';
+import { ShoppingBag, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { getAssetUrl } from '../utils/assetHelper';
+import { RubricSectionId } from '../types/navigation';
 
 interface ProductSectionProps {
   onOpenOrderModal: () => void;
   onOpenImageModal: (imgUrl: string, title: string, caption?: string) => void;
+  onNavigateSection?: (id: RubricSectionId) => void;
 }
 
-export default function ProductSection({ onOpenOrderModal, onOpenImageModal }: ProductSectionProps) {
+export default function ProductSection({
+  onOpenOrderModal,
+  onOpenImageModal,
+  onNavigateSection,
+}: ProductSectionProps) {
   const platedImg = getAssetUrl('/assets/aistudio/d24bcb86-b988-41f6-94b3-8373bc88adc7_cbe6a9af.jpg');
   const packagedBoxImg = getAssetUrl('/assets/aistudio/f7e6b8da-856e-45c8-8511-643e22263e58_e22c8a9b.jpg');
   const stackImg = getAssetUrl('/assets/aistudio/a90d84c5-7e82-4b50-8980-95caa98499d7_4e86f77c.jpg');
 
-  const steps = [
-    {
-      num: '01',
-      title: 'Peel & Puree Ripe Bananas',
-      desc: 'Selected ripe local bananas are sliced and blended into a smooth, naturally sweet puree.',
-    },
-    {
-      num: '02',
-      title: 'Fold Soft Pastry Dough',
-      desc: 'Pureed bananas are mixed with flour, margarine, sugar, and egg into a pliable dough.',
-    },
-    {
-      num: '03',
-      title: 'Shape & Golden Crisp Fry',
-      desc: 'Dough is fluted onto sturdy skewers and fried until golden amber with a crackling exterior.',
-    },
-    {
-      num: '04',
-      title: 'Drizzle & Powder Dusting',
-      desc: 'Drizzled generously with condensed milk and dusted with Bear Brand powder and Milo.',
-    },
-  ];
-
   return (
-    <section id="product" className="py-16 lg:py-20 bg-white border-b border-stone-200/80">
+    <section id="products" className="py-12 lg:py-16 bg-stone-50/60 border-b border-stone-200/80">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
-        <div className="max-w-2xl mb-12">
+        <div className="max-w-3xl mb-10">
           <div className="flex items-center gap-2 text-xs font-semibold text-[#153e26] tracking-wide mb-2">
-            <span>Menu & Culinary Craft</span>
+            <span>Products</span>
             <span aria-hidden="true" className="text-stone-300">/</span>
-            <span>Signature Item</span>
+            <span>Signature Merienda</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-stone-900 tracking-tight">
             Banana Churros with Sweet Drizzle
           </h2>
           <p className="mt-2 text-sm sm:text-base text-stone-600">
-            A delicious snack crafted specifically for the student and faculty merienda at ESSU Main Campus.
+            A delicious snack crafted specifically for student and faculty merienda at ESSU Main Campus. Click photos to inspect product presentation.
           </p>
         </div>
 
-        {/* 2-Column Split: Product Details & Clean Image Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+        {/* 2-Column Split: Photos Grid & Product Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           {/* Left Column: Photos Grid */}
           <div className="lg:col-span-6 space-y-4">
@@ -74,7 +57,7 @@ export default function ProductSection({ onOpenOrderModal, onOpenImageModal }: P
                   alt="Plated Banana Churros"
                   className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
                 />
-                <div className="absolute bottom-3 left-3 bg-[#153e26]/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
+                <div className="absolute bottom-3 left-3 bg-[#153e26]/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow-xs">
                   Signature Plating · Click to Zoom
                 </div>
               </div>
@@ -97,7 +80,7 @@ export default function ProductSection({ onOpenOrderModal, onOpenImageModal }: P
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 />
                 <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-black/60 px-2 py-0.5 rounded">
-                  Lunch Pack
+                  Lunch Pack · Click to Zoom
                 </span>
               </div>
 
@@ -117,7 +100,7 @@ export default function ProductSection({ onOpenOrderModal, onOpenImageModal }: P
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                 />
                 <span className="absolute bottom-2 left-2 text-[10px] font-bold text-white bg-black/60 px-2 py-0.5 rounded">
-                  Golden Stack
+                  Golden Stack · Click to Zoom
                 </span>
               </div>
             </div>
@@ -136,7 +119,7 @@ export default function ProductSection({ onOpenOrderModal, onOpenImageModal }: P
               </h3>
 
               <p className="text-sm text-stone-600 leading-relaxed">
-                Unlike ordinary snacks, our banana churros integrate pureed ripe bananas straight into the dough rather than using artificial syrups. This delivers a rich banana aroma with every bite.
+                Unlike ordinary street snacks, our banana churros integrate pureed ripe bananas straight into the dough rather than using artificial syrups. This delivers a rich banana aroma with every crispy bite.
               </p>
             </div>
 
@@ -185,44 +168,31 @@ export default function ProductSection({ onOpenOrderModal, onOpenImageModal }: P
 
               <button
                 onClick={onOpenOrderModal}
-                className="px-4 py-2 text-xs font-bold text-white bg-[#153e26] hover:bg-[#0f2d1a] rounded-lg transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-[#153e26] hover:bg-[#0f2d1a] rounded-lg transition-colors cursor-pointer"
               >
-                Pre-Order Now
+                <ShoppingBag className="w-3.5 h-3.5 text-[#facc15]" />
+                <span>Pre-Order Now</span>
+              </button>
+            </div>
+
+            <div className="pt-2">
+              <button
+                onClick={() => {
+                  if (onNavigateSection) {
+                    onNavigateSection('ingredients');
+                  } else {
+                    const el = document.getElementById('ingredients');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#153e26] hover:underline cursor-pointer"
+              >
+                <span>View Full Recipe & 4-Step Ingredients Breakdown</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
           </div>
 
-        </div>
-
-        {/* Minimalist 4-Step Process Strip */}
-        <div className="pt-8 border-t border-stone-200/80">
-          <div className="mb-6">
-            <span className="text-xs font-bold text-[#153e26] uppercase tracking-wider block">
-              Culinary Method
-            </span>
-            <h3 className="text-xl font-bold font-heading text-stone-900">
-              4-Step Preparation Procedure
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {steps.map((step) => (
-              <div
-                key={step.num}
-                className="p-4 rounded-xl bg-[#faf7ee]/70 border border-stone-200/80 space-y-2"
-              >
-                <span className="text-xs font-mono font-bold text-[#153e26] block">
-                  {step.num}
-                </span>
-                <h4 className="text-sm font-bold font-heading text-stone-900">
-                  {step.title}
-                </h4>
-                <p className="text-xs text-stone-600 leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>
