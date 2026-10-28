@@ -16,7 +16,7 @@ export default function Hero({
   onOpenImageModal,
   onNavigateSection,
 }: HeroProps) {
-  const posterImage = getAssetUrl('/assets/aistudio/839064142_1780225249563203_4101194208461935408_n_6605cc29.png');
+  const logoImage = getAssetUrl('/logo.png');
 
   return (
     <section id="home" className="relative pt-8 pb-14 lg:pt-12 lg:pb-20 border-b border-stone-200/80 bg-[#faf8f2]">
@@ -129,36 +129,41 @@ export default function Hero({
 
           </div>
 
-          {/* Right Column: Clean Visual Showcase */}
-          <div className="lg:col-span-5">
+          {/* Right Column: Clean Visual Showcase - Official Logo Emblem */}
+          <div className="lg:col-span-5 flex justify-center">
             <div
               onClick={() =>
                 onOpenImageModal(
-                  posterImage,
-                  'OSQE Banana Chorus Official Promotional Poster',
-                  'Official menu poster: Banana Churros with Condensed Milk Drizzle — 3 for ₱50 Only!'
+                  logoImage,
+                  'OSQE Banana Chorus Company Inc. - Official Logo',
+                  'Official corporate emblem: "Together in Harmony, United in Purpose" — OSQE banana chorus Company Inc.'
                 )
               }
-              className="group cursor-pointer rounded-3xl bg-white border border-[#153e26]/15 p-2.5 shadow-sm hover:shadow-md transition-all duration-300"
+              className="group cursor-pointer rounded-3xl bg-white border border-[#153e26]/15 p-4 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300 w-full max-w-md"
             >
-              <div className="relative aspect-3/4 rounded-2xl overflow-hidden bg-[#faf7ee]">
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-b from-[#faf7ee] to-[#f4eee0] flex items-center justify-center p-3 sm:p-5 border border-amber-900/10">
                 <img
-                  src={posterImage}
-                  alt="OSQE Banana Churros Official Poster"
-                  className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-500"
+                  src={logoImage}
+                  alt="OSQE Banana Chorus Company Inc. Official Logo"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
                 />
                 
                 {/* Minimalist Zoom Badge */}
-                <div className="absolute bottom-3 right-3 px-2.5 py-1 text-[11px] font-bold bg-[#153e26] text-white rounded-lg shadow-xs opacity-90 group-hover:opacity-100 flex items-center gap-1.5">
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 text-[11px] font-bold bg-[#153e26] text-white rounded-lg shadow-xs opacity-90 group-hover:opacity-100 flex items-center gap-1.5 transition-opacity">
                   <Sparkles className="w-3 h-3 text-[#facc15]" />
-                  <span>Click to View Full Poster</span>
+                  <span>Click to Enlarge Logo</span>
                 </div>
               </div>
 
               {/* Minimal caption below */}
-              <div className="p-2.5 flex items-center justify-between text-xs text-stone-600">
-                <span className="font-semibold text-[#153e26]">Official Brand Poster</span>
-                <span className="text-[11px] text-stone-400">Elective 211 Submission</span>
+              <div className="pt-3 px-1 flex items-center justify-between text-xs text-stone-600">
+                <div className="leading-tight">
+                  <span className="font-bold text-[#153e26] block">OSQE banana chorus COMPANY INC.</span>
+                  <span className="text-[11px] text-stone-500">Together in Harmony, United in Purpose</span>
+                </div>
+                <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-full shrink-0">
+                  Official Logo
+                </span>
               </div>
             </div>
           </div>
